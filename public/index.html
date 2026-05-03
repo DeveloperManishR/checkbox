@@ -155,6 +155,15 @@
     <script>
       /* ─── User info ─────────────────────────────── */
       const stored = localStorage.getItem('userDetails');
+
+        const token = localStorage.getItem("token");
+      const userDetails = JSON.parse(
+        localStorage.getItem("userDetails") || "null",
+      );
+
+      if (!token || !userDetails) {
+        window.location.href = "login.html";
+      }
       if (stored) {
         try {
           const user = JSON.parse(stored);
