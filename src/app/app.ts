@@ -3,13 +3,15 @@ import path from "node:path"
 import checkBoxRoutes from "./modules/checkbox/checkbox.route.js"
 import type { Application, Response } from "express";
 import authRoutes from "./modules/auth/auth.route.js"
-
+import cors from 'cors';
 export function createServerApplication(): Application {
   const app = express();
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(path.resolve('./public')))
+  app.use(cors());
+
   
   app.use('/api/auth',authRoutes)
   app.use('/api/checkbox',checkBoxRoutes)
